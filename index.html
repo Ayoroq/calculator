@@ -4,41 +4,64 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jacquarda+Bastarda+9&display=swap"
+      rel="stylesheet"
+    />
+
     <title>Calculator</title>
   </head>
   <body>
-    <div class="history"></div>
-    <div class="display">
-        <input readonly class="screen" type="text" placeholder="0" value="" name="screen" id="screen">
-    </div>
-    <div class="container">
-      <button class="digit">7</button>
-      <button class="digit">8</button>
-      <button class="digit">9</button>
-      <button class="operator" value="/">&divide</button>
-    </div>
-    <div class="container">
-      <button class="digit">4</button>
-      <button class="digit">5</button>
-      <button class="digit">6</button>
-      <button class="operator" value="*">&times</button>
-    </div>
-    <div class="container">
-      <button class="digit">1</button>
-      <button class="digit">2</button>
-      <button class="digit">3</button>
-      <button class="operator" value="-">-</button>
-    </div>
-    <div class="container">
-      <button class="digit">0</button>
-      <button class="digit">.</button>
-      <button class="equal">=</button>
-      <button class="operator" value="+">+</button>
-    </div>
-    <div class="container">
-      <button class="clear">AC</button>
-      <button class="del">DEL</button>
-    </div>
+    <header class="header"></header>
+    <main class="main">
+      <div class="main-container">
+        <div class="container display">
+          <div class="history"></div>
+          <input
+            readonly
+            class="screen"
+            type="text"
+            placeholder="0"
+            value=""
+            name="screen"
+            id="screen"
+          />
+        </div>
+        <div class="container">
+          <button class="digit">7</button>
+          <button class="digit">8</button>
+          <button class="digit">9</button>
+          <button class="operator" value="/">&divide</button>
+        </div>
+        <div class="container">
+          <button class="digit">4</button>
+          <button class="digit">5</button>
+          <button class="digit">6</button>
+          <button class="operator" value="*">&times</button>
+        </div>
+        <div class="container">
+          <button class="digit">1</button>
+          <button class="digit">2</button>
+          <button class="digit">3</button>
+          <button class="operator" value="-">-</button>
+        </div>
+        <div class="container">
+          <button class="digit">0</button>
+          <button class="digit">.</button>
+          <button class="equal">=</button>
+          <button class="operator" value="+">+</button>
+        </div>
+        <div class="container">
+          <div class="extra">
+            <button class="clear">AC</button>
+            <button class="del" disabled>DEL</button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="footer"></footer>
   </body>
   <script src="calculator.js"></script>
 </html>

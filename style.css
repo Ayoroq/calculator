@@ -1,0 +1,118 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  height: 60px;
+  background-color: green;
+  display: flex;
+}
+
+.main {
+  flex: 1;
+  background-color: #7999e9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main .main-container {
+  border-radius: 30px;
+  background-color: #e25b3d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 600px;
+  width: 340px;
+}
+
+.main .main-container .container {
+  display: flex;
+  gap: 30px;
+}
+
+.main .main-container .container button {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  border: none;
+  font-family: "Jacquarda Bastarda 9", serif;
+  font-weight: 800;
+  font-style: normal;
+  font-size: xx-large;
+}
+.main .main-container .container .extra {
+    margin-top: 30px;
+  display: flex;
+  gap: 30px;
+}
+
+.main .main-container .container .extra button {
+  height: 45px;
+  width: 100px;
+  border-radius: 10px;
+  border: none;
+}
+
+button {
+  background-color: #d9d9d9;
+  text-align: center;
+}
+
+button:hover {
+  background-color: #5d281c;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+button:active {
+  background: #e5e5e5;
+  -webkit-box-shadow: inset 0px 0px 5px #000000;
+  -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+  box-shadow: inset 0px 0px 5px #000000;
+  outline: none;
+}
+
+.display {
+    margin: 40px 0;
+    text-align: right;
+  background-color: #d9d9d9;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  font-family: "Jacquarda Bastarda 9", serif;
+  font-weight: 900;
+  font-style: normal;
+  font-size: 1rem;
+  border-radius: 15px;
+  padding-right: 10px;
+  padding-top: 10px;
+}
+
+.screen {
+  background: none;
+  text-align: right;
+  border: none;
+  font-family: "Jacquarda Bastarda 9", serif;
+  font-weight: 900;
+  font-style: normal;
+  font-size: 5rem;
+}
+
+.screen:focus{
+    outline: none;
+}
+
+.footer {
+  height: 60px;
+  background-color: blue;
+  display: flex;
+}

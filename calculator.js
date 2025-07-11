@@ -20,7 +20,6 @@ function divide(a, b) {
 
 //function operate
 function operate(operator, a, b) {
-  if (a === "ERROR!" || b === "ERROR!") return "ERROR!";
   switch (operator) {
     case "+":
       return add(a, b);
@@ -30,8 +29,7 @@ function operate(operator, a, b) {
       return multiply(a, b);
     case "/":
       if (b === 0) {
-        return "ERROR!";
-      }
+        return "You broke math 🤯";}
       return divide(a, b);
     default:
       return "Invalid operator";
@@ -42,6 +40,9 @@ const screen = document.querySelector(".screen");
 const del = document.querySelector(".del");
 const clear = document.querySelector(".clear");
 const historyDisplay = document.querySelector(".history");
+const operators = document.querySelectorAll(".operator");
+const equals = document.querySelector(".equal");
+const digits = document.querySelectorAll(".digit");
 
 let a;
 let b;
@@ -89,19 +90,23 @@ function display(event) {
   }
 }
 
-const digits = document.querySelectorAll(".digit");
+// what happens when a digit is clicked
 digits.forEach((digitButton) => {
   digitButton.addEventListener("click", display);
 });
 
 // adding the keypad functionality
-document.addEventListener('keydown', (event) => {
+document.addEventListener("keydown", (event) => {
   const key = event.key;
-  const digitButton = Array.from(digits).find((button) => button.innerText === key);
-  const operatorButton = Array.from(operators).find((button) => button.innerText === key);
-  const equalsButton = equals.innerText === key || key === 'Enter';
-  const delButton = key === 'Backspace';
-  const clearButton = key === 'Escape' || key === 'Delete';
+  const digitButton = Array.from(digits).find(
+    (button) => button.innerText === key
+  );
+  const operatorButton = Array.from(operators).find(
+    (button) => button.innerText === key
+  );
+  const equalsButton = equals.innerText === key || key === "Enter";
+  const delButton = key === "Backspace";
+  const clearButton = key === "Escape" || key === "Delete";
   if (clearButton) {
     reset();
   }
@@ -120,8 +125,7 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-// delete the last value on screen
-del.disabled = true;
+// delete the last value on screen when the delete button is clicked and update a and b respectively
 del.onclick = function () {
   screen.value = screen.value.slice(0, -1);
   if (!isNaN(a) && operator) {
@@ -129,16 +133,16 @@ del.onclick = function () {
   } else {
     a = parseFloat(screen.value);
   }
-  
+
   if (screen.value === "") {
     del.disabled = true;
   }
 };
 
-// clear the screen and reset everything
+// clear the screen and reset everything when the AC is selected
 clear.addEventListener("click", reset);
 
-const operators = document.querySelectorAll(".operator");
+// What happens an operator is selected
 operators.forEach((operatorButton) => {
   operatorButton.addEventListener("click", () => {
     if (result) {
@@ -150,7 +154,6 @@ operators.forEach((operatorButton) => {
     if (operator && a !== "" && b !== "") {
       history.push([a, operator, b, "="]);
       historyDisplay.textContent = history.at(-1).join(" ");
-      console.log(history.at(-1));
       a = operate(operator, a, b);
       screen.value = a;
       result = true;
@@ -162,13 +165,12 @@ operators.forEach((operatorButton) => {
   });
 });
 
-const equals = document.querySelector(".equal");
+// What happens when the equals button is clicked
 equals.addEventListener("click", () => {
   b = parseFloat(screen.value) || 0;
-  if (a === "" || b === "" || !operator || isNaN(b)) return;
+  if (a === "" || !operator || isNaN(b)) return;
   history.push([a, operator, b, "="]);
   historyDisplay.textContent = history.at(-1).join(" ");
-  console.log(history.at(-1));
   a = operate(operator, a, b);
   screen.value = a;
   result = true;
