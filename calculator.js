@@ -29,7 +29,8 @@ function operate(operator, a, b) {
       return multiply(a, b);
     case "/":
       if (b === 0) {
-        return "You broke math 🤯";}
+        return "You broke math 🤯";
+      }
       return divide(a, b);
     default:
       return "Invalid operator";
@@ -58,6 +59,8 @@ function reset() {
   b = "";
   operator = "";
   history = [];
+  historyDisplay.textContent = "";
+  result = false;
 }
 reset();
 
