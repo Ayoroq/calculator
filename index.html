@@ -7,36 +7,36 @@
     <title>Calculator</title>
   </head>
   <body>
-    <div class="screen">
-        <input type="text" placeholder="0" name="" id="">
+    <div class="display">
+        <input class="screen" type="text" placeholder="0" value="" name="screen" id="screen">
     </div>
     <div class="container">
-      <button>7</button>
-      <button>8</button>
-      <button>9</button>
-      <button>&divide</button>
+      <button class="digit">7</button>
+      <button class="digit">8</button>
+      <button class="digit">9</button>
+      <button class="operator" value="/">&divide</button>
     </div>
     <div class="container">
-      <button>4</button>
-      <button>5</button>
-      <button>6</button>
-      <button>*</button>
+      <button class="digit">4</button>
+      <button class="digit">5</button>
+      <button class="digit">6</button>
+      <button class="operator" value="*">&times</button>
     </div>
     <div class="container">
-      <button>1</button>
-      <button>2</button>
-      <button>3</button>
-      <button>-</button>
+      <button class="digit">1</button>
+      <button class="digit">2</button>
+      <button class="digit">3</button>
+      <button class="operator" value="-">-</button>
     </div>
     <div class="container">
-      <button>0</button>
-      <button>.</button>
-      <button>=</button>
-      <button>+</button>
+      <button class="digit">0</button>
+      <button class="digit">.</button>
+      <button class="equal">=</button>
+      <button class="operator" value="+">+</button>
     </div>
     <div class="container">
-      <button>AC</button>
-      <button>DEL</button>
+      <button class="clear">AC</button>
+      <button class="del">DEL</button>
     </div>
   </body>
   <script src="calculator.js"></script>
