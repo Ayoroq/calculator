@@ -20,7 +20,7 @@ function divide(a, b) {
 
 //function operate
 function operate(operator, a, b) {
-  if (a === "ERROR" || b === "ERROR") return "ERROR!";
+  if (a === "ERROR!" || b === "ERROR!") return "ERROR!";
   switch (operator) {
     case "+":
       return add(a, b);
@@ -41,6 +41,7 @@ function operate(operator, a, b) {
 const screen = document.querySelector(".screen");
 const del = document.querySelector(".del");
 const clear = document.querySelector(".clear");
+const historyDisplay = document.querySelector(".history");
 
 let a;
 let b;
@@ -93,6 +94,32 @@ digits.forEach((digitButton) => {
   digitButton.addEventListener("click", display);
 });
 
+// adding the keypad functionality
+document.addEventListener('keydown', (event) => {
+  const key = event.key;
+  const digitButton = Array.from(digits).find((button) => button.innerText === key);
+  const operatorButton = Array.from(operators).find((button) => button.innerText === key);
+  const equalsButton = equals.innerText === key || key === 'Enter';
+  const delButton = key === 'Backspace';
+  const clearButton = key === 'Escape' || key === 'Delete';
+  if (clearButton) {
+    reset();
+  }
+
+  if (delButton) {
+    del.click();
+  }
+  if (equalsButton) {
+    equals.click();
+  }
+  if (operatorButton) {
+    operatorButton.click();
+  }
+  if (digitButton) {
+    digitButton.click();
+  }
+});
+
 // delete the last value on screen
 del.disabled = true;
 del.onclick = function () {
@@ -102,7 +129,7 @@ del.onclick = function () {
   } else {
     a = parseFloat(screen.value);
   }
-
+  
   if (screen.value === "") {
     del.disabled = true;
   }
@@ -114,13 +141,16 @@ clear.addEventListener("click", reset);
 const operators = document.querySelectorAll(".operator");
 operators.forEach((operatorButton) => {
   operatorButton.addEventListener("click", () => {
-    if (result){
+    if (result) {
       result = true;
       operator = operatorButton.value;
       return;
     }
     screen.value = "";
-    if (operator && a !== '' && b !== '') {
+    if (operator && a !== "" && b !== "") {
+      history.push([a, operator, b, "="]);
+      historyDisplay.textContent = history.at(-1).join(" ");
+      console.log(history.at(-1));
       a = operate(operator, a, b);
       screen.value = a;
       result = true;
@@ -136,6 +166,9 @@ const equals = document.querySelector(".equal");
 equals.addEventListener("click", () => {
   b = parseFloat(screen.value) || 0;
   if (a === "" || b === "" || !operator || isNaN(b)) return;
+  history.push([a, operator, b, "="]);
+  historyDisplay.textContent = history.at(-1).join(" ");
+  console.log(history.at(-1));
   a = operate(operator, a, b);
   screen.value = a;
   result = true;
