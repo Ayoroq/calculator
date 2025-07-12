@@ -62,6 +62,7 @@ function reset() {
   history = [];
   historyDisplay.textContent = "";
   isResultDisplayed = false;
+  del.disabled = true;
 }
 reset();
 
@@ -86,6 +87,7 @@ function display(event) {
     return;
   } else if (screen.value === "0" && value !== "0") {
     screen.value = value;
+    a = parseFloat(value);
     return;
   }
   if (isResultDisplayed) {
@@ -96,7 +98,7 @@ function display(event) {
   screen.value += value;
   del.disabled = false;
 
-  if (a && operator) {
+  if (a !== '' && operator) {
     b = parseFloat(screen.value);
   } else {
     a = parseFloat(screen.value);
