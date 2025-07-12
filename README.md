@@ -6,6 +6,8 @@ A simple, clean, and functional calculator built with vanilla HTML, CSS, and Jav
 
 Clink the link to view the [Live Preview](https://ayoroq.github.io/calculator/)
 
+![image of the calculator](calculator.jpeg)
+
 ## Features
 
 - **Basic Arithmetic:** Perform addition, subtraction, multiplication, and division.
