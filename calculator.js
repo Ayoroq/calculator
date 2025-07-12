@@ -20,6 +20,7 @@ function divide(a, b) {
 
 //function operate
 function operate(operator, a, b) {
+  if (a === 'nope🤨' || b === 'nope🤨') return 'nope🤨';
   switch (operator) {
     case "+":
       return add(a, b);
@@ -36,7 +37,6 @@ function operate(operator, a, b) {
       return "Invalid operator";
   }
 }
-
 
 const screen = document.querySelector(".screen");
 const del = document.querySelector(".del");
@@ -167,7 +167,7 @@ operators.forEach((operatorButton) => {
       history.push([a, operator, b, "="]);
       historyDisplay.textContent = history.at(-1).join(" ");
       a = operate(operator, a, b);
-     updateScreen(a);
+      updateScreen(a);
       isResultDisplayed = true;
       b = "";
       operator = operatorButton.value;
@@ -179,12 +179,12 @@ operators.forEach((operatorButton) => {
 
 // What happens when the equals button is clicked
 equals.addEventListener("click", () => {
-  b = parseFloat(screen.value) || 0;
   if (a === "" || !operator || isNaN(b)) return;
+  b = parseFloat(screen.value);
   history.push([a, operator, b, "="]);
   historyDisplay.textContent = history.at(-1).join(" ");
   a = operate(operator, a, b);
-  updateScreen(a)
+  updateScreen(a);
   isResultDisplayed = true;
   b = "";
   operator = "";
