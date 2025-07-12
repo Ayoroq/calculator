@@ -37,6 +37,7 @@ function operate(operator, a, b) {
   }
 }
 
+
 const screen = document.querySelector(".screen");
 const del = document.querySelector(".del");
 const clear = document.querySelector(".clear");
@@ -49,7 +50,7 @@ let a;
 let b;
 let operator;
 let history = [];
-let result;
+let isResultDisplayed;
 
 // function that clears everything and resets the whole thing
 // calling the function at the beginning to initialize everything
@@ -60,9 +61,18 @@ function reset() {
   operator = "";
   history = [];
   historyDisplay.textContent = "";
-  result = false;
+  isResultDisplayed = false;
 }
 reset();
+
+// A helper function to update the screen, handling precision for long numbers.
+function updateScreen(value) {
+  if (value.toString().length > 8) {
+    screen.value = Number(value).toPrecision(3);
+  } else {
+    screen.value = value;
+  }
+}
 
 //function to display the numbers on screen when button is clicked clicked
 function display(event) {
@@ -78,9 +88,9 @@ function display(event) {
     screen.value = value;
     return;
   }
-  if (result) {
+  if (isResultDisplayed) {
     screen.value = "";
-    result = false;
+    isResultDisplayed = false;
   }
 
   screen.value += value;
@@ -129,7 +139,7 @@ document.addEventListener("keydown", (event) => {
 });
 
 // delete the last value on screen when the delete button is clicked and update a and b respectively
-del.onclick = function () {
+del.addEventListener("click", () => {
   screen.value = screen.value.slice(0, -1);
   if (!isNaN(a) && operator) {
     b = parseFloat(screen.value);
@@ -140,7 +150,7 @@ del.onclick = function () {
   if (screen.value === "") {
     del.disabled = true;
   }
-};
+});
 
 // clear the screen and reset everything when the AC is selected
 clear.addEventListener("click", reset);
@@ -148,8 +158,7 @@ clear.addEventListener("click", reset);
 // What happens an operator is selected
 operators.forEach((operatorButton) => {
   operatorButton.addEventListener("click", () => {
-    if (result) {
-      result = true;
+    if (isResultDisplayed) {
       operator = operatorButton.value;
       return;
     }
@@ -158,12 +167,8 @@ operators.forEach((operatorButton) => {
       history.push([a, operator, b, "="]);
       historyDisplay.textContent = history.at(-1).join(" ");
       a = operate(operator, a, b);
-      if (a.toString().length > 8) {
-        screen.value = a.toPrecision(3);
-      } else {
-        screen.value = a;
-      }
-      result = true;
+     updateScreen(a);
+      isResultDisplayed = true;
       b = "";
       operator = operatorButton.value;
       return;
@@ -179,12 +184,8 @@ equals.addEventListener("click", () => {
   history.push([a, operator, b, "="]);
   historyDisplay.textContent = history.at(-1).join(" ");
   a = operate(operator, a, b);
-  if (a.toString().length > 8) {
-    screen.value = a.toPrecision(3);
-  } else {
-    screen.value = a;
-  }
-  result = true;
+  updateScreen(a)
+  isResultDisplayed = true;
   b = "";
   operator = "";
 });
