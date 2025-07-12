@@ -4,20 +4,44 @@
 
 body {
   height: 100vh;
-  background-color: red;
+  background-color: #d9d9d9;
   display: flex;
   flex-direction: column;
+  font-family: "Jacquarda Bastarda 9", serif;
+  font-style: normal;
 }
 
 .header {
   height: 60px;
-  background-color: green;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 32px;
+}
+
+.logo {
+  margin-left: 20px;
+}
+
+.header .container {
+  margin-right: 20px;
+}
+
+ul {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #000000;
 }
 
 .main {
   flex: 1;
   background-color: #7999e9;
+  border-radius: 2px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,7 +74,7 @@ body {
   font-size: xx-large;
 }
 .main .main-container .container .extra {
-    margin-top: 30px;
+  margin-top: 30px;
   display: flex;
   gap: 30px;
 }
@@ -82,15 +106,13 @@ button:active {
 }
 
 .display {
-    margin: 40px 0;
-    text-align: right;
+  margin: 40px 0;
+  text-align: right;
   background-color: #d9d9d9;
   display: flex;
   flex-direction: column;
   width: 80%;
-  font-family: "Jacquarda Bastarda 9", serif;
   font-weight: 900;
-  font-style: normal;
   font-size: 1rem;
   border-radius: 15px;
   padding-right: 10px;
@@ -107,12 +129,14 @@ button:active {
   font-size: 5rem;
 }
 
-.screen:focus{
-    outline: none;
+.screen:focus {
+  outline: none;
 }
 
 .footer {
   height: 60px;
-  background-color: blue;
+  background-color: white;
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
