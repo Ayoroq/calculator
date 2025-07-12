@@ -29,7 +29,7 @@ function operate(operator, a, b) {
       return multiply(a, b);
     case "/":
       if (b === 0) {
-        return "You broke math 🤯";
+        return "nope🤨";
       }
       return divide(a, b);
     default:
@@ -158,7 +158,11 @@ operators.forEach((operatorButton) => {
       history.push([a, operator, b, "="]);
       historyDisplay.textContent = history.at(-1).join(" ");
       a = operate(operator, a, b);
-      screen.value = a;
+      if (a.toString().length > 8) {
+        screen.value = a.toPrecision(3);
+      } else {
+        screen.value = a;
+      }
       result = true;
       b = "";
       operator = operatorButton.value;
@@ -175,7 +179,11 @@ equals.addEventListener("click", () => {
   history.push([a, operator, b, "="]);
   historyDisplay.textContent = history.at(-1).join(" ");
   a = operate(operator, a, b);
-  screen.value = a;
+  if (a.toString().length > 8) {
+    screen.value = a.toPrecision(3);
+  } else {
+    screen.value = a;
+  }
   result = true;
   b = "";
   operator = "";
